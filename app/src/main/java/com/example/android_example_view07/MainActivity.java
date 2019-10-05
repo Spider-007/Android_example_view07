@@ -21,9 +21,15 @@ import java.net.URI;
 import java.net.URISyntaxException;
 import java.net.URL;
 
+import okhttp3.FormBody;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.RequestBody;
+import okhttp3.Response;
+
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
-    private Button mSentRequestButton, mOpenWebViewButton;
+    private Button mSentRequestButton, mOpenWebViewButton, mGetOkHttpBtn, mPostOkHttpBtn;
     private TextView mTextView;
     private WebView mWebView;
 
@@ -37,10 +43,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private void initView() {
         mSentRequestButton = findViewById(R.id.sendRequestBtn);
         mOpenWebViewButton = findViewById(R.id.webViewBtn);
+        mGetOkHttpBtn = findViewById(R.id.getOkHttpBtn);
+        mPostOkHttpBtn = findViewById(R.id.postOkHttpBtn);
         mTextView = findViewById(R.id.mTv);
         mWebView = findViewById(R.id.mWebViewId);
         mSentRequestButton.setOnClickListener(this);
         mOpenWebViewButton.setOnClickListener(this);
+        mGetOkHttpBtn.setOnClickListener(this);
+        mPostOkHttpBtn.setOnClickListener(this);
     }
 
     @SuppressLint("SetJavaScriptEnabled")
@@ -106,6 +116,47 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 mWebView.setWebViewClient(new WebViewClient());
                 mWebView.loadUrl("http://www.baidu.com");
 
+                break;
+            case R.id.getOkHttpBtn:
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        OkHttpClient mOkHttpClient = new OkHttpClient();
+                        Request mRquest = new Request.Builder()
+                                .url("http://www.baidu.com")
+                                .build();
+                        try {
+                            Response mResponse = mOkHttpClient.newCall(mRquest).execute();
+                            String mString = mResponse.body().string();
+                            showReponse(mString);
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }).start();
+                break;
+            case R.id.postOkHttpBtn:
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        OkHttpClient mOkHttpClientPost = new OkHttpClient();
+                        RequestBody mRequestBody = new FormBody.Builder()
+                                .add("username", "admin")
+                                .add("password", "123456")
+                                .build();
+                        Request mRquestPost = new Request.Builder()
+                                .url("http://www.baidu.com")
+                                .post(mRequestBody)
+                                .build();
+                        try {
+                            Response mPostResponse = mOkHttpClientPost.newCall(mRquestPost).execute();
+                            showReponse(mPostResponse.body().string());
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+
+                    }
+                }).start();
                 break;
             default:
                 throw new NullPointerException("Don't found the Id");

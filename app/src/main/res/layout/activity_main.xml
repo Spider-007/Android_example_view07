@@ -20,9 +20,10 @@
             android:layout_weight="1"
             android:background="@color/blue"
             android:padding="10dp"
-            android:text="Open WebView"
+            android:text=" WebView"
             android:textAllCaps="false"
             android:textColor="#fff"
+            android:textSize="10sp"
             android:textStyle="bold" />
 
         <Button
@@ -33,10 +34,40 @@
             android:layout_weight="1"
             android:background="@color/blue"
             android:padding="10dp"
-            android:text="Send Request"
+            android:text="Get Request"
             android:textAllCaps="false"
             android:textColor="#fff"
+            android:textSize="10sp"
             android:textStyle="bold" />
+
+        <Button
+            android:id="@+id/getOkHttpBtn"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:layout_weight="1"
+            android:background="@color/blue"
+            android:padding="10dp"
+            android:text="Get OkHttp"
+            android:textAllCaps="false"
+            android:textColor="#fff"
+            android:textSize="10sp"
+            android:textStyle="bold" />
+
+        <Button
+            android:id="@+id/postOkHttpBtn"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:layout_weight="1"
+            android:background="@color/blue"
+            android:padding="10dp"
+            android:text="Pots Request"
+            android:textAllCaps="false"
+            android:textColor="#fff"
+            android:textSize="10sp"
+            android:textStyle="bold" />
+
     </LinearLayout>
 
     <WebView
