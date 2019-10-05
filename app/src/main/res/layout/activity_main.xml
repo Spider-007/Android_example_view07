@@ -7,68 +7,121 @@
     tools:context=".MainActivity">
 
 
-    <LinearLayout
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:layout_height="wrap_content">
 
-        <Button
-            android:id="@+id/webViewBtn"
-            android:layout_width="0dp"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="10dp"
-            android:layout_weight="1"
-            android:background="@color/blue"
-            android:padding="10dp"
-            android:text=" WebView"
-            android:textAllCaps="false"
-            android:textColor="#fff"
-            android:textSize="10sp"
-            android:textStyle="bold" />
+            android:orientation="horizontal">
 
-        <Button
-            android:id="@+id/sendRequestBtn"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_margin="10dp"
-            android:layout_weight="1"
-            android:background="@color/blue"
-            android:padding="10dp"
-            android:text="Get Request"
-            android:textAllCaps="false"
-            android:textColor="#fff"
-            android:textSize="10sp"
-            android:textStyle="bold" />
+            <Button
+                android:id="@+id/webViewBtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:background="@color/blue"
+                android:padding="10dp"
+                android:text=" WebView"
+                android:textAllCaps="false"
+                android:textColor="#fff"
+                android:textSize="10sp"
+                android:textStyle="bold" />
 
-        <Button
-            android:id="@+id/getOkHttpBtn"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_margin="10dp"
-            android:layout_weight="1"
-            android:background="@color/blue"
-            android:padding="10dp"
-            android:text="Get OkHttp"
-            android:textAllCaps="false"
-            android:textColor="#fff"
-            android:textSize="10sp"
-            android:textStyle="bold" />
+            <Button
+                android:id="@+id/sendRequestBtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:background="@color/blue"
+                android:padding="10dp"
+                android:text="Get Request"
+                android:textAllCaps="false"
+                android:textColor="#fff"
+                android:textSize="10sp"
+                android:textStyle="bold" />
 
-        <Button
-            android:id="@+id/postOkHttpBtn"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_margin="10dp"
-            android:layout_weight="1"
-            android:background="@color/blue"
-            android:padding="10dp"
-            android:text="Pots Request"
-            android:textAllCaps="false"
-            android:textColor="#fff"
-            android:textSize="10sp"
-            android:textStyle="bold" />
+            <Button
+                android:id="@+id/getOkHttpBtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:background="@color/blue"
+                android:padding="10dp"
+                android:text="Get OkHttp"
+                android:textAllCaps="false"
+                android:textColor="#fff"
+                android:textSize="10sp"
+                android:textStyle="bold" />
 
-    </LinearLayout>
+            <Button
+                android:id="@+id/postOkHttpBtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:background="@color/blue"
+                android:padding="10dp"
+                android:text="Pots Request"
+                android:textAllCaps="false"
+                android:textColor="#fff"
+                android:textSize="10sp"
+                android:textStyle="bold" />
+
+            <Button
+                android:id="@+id/pullBtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:background="@color/blue"
+                android:padding="10dp"
+                android:text="pullParse"
+                android:textAllCaps="false"
+                android:textColor="#fff"
+                android:textSize="10sp"
+                android:textStyle="bold" />
+
+            <Button
+                android:id="@+id/saxBtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:background="@color/blue"
+                android:padding="10dp"
+                android:text="saxParse"
+                android:textAllCaps="false"
+                android:textColor="#fff"
+                android:textSize="10sp"
+                android:textStyle="bold" />
+
+            <Button
+                android:id="@+id/jsonObjectBtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:background="@color/blue"
+                android:padding="10dp"
+                android:text="jsonObjectParse"
+                android:textAllCaps="false"
+                android:textColor="#fff"
+                android:textSize="10sp"
+                android:textStyle="bold" />
+
+            <Button
+                android:id="@+id/GSONBtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:background="@color/blue"
+                android:padding="10dp"
+                android:text="gsonParse"
+                android:textAllCaps="false"
+                android:textColor="#fff"
+                android:textSize="10sp"
+                android:textStyle="bold" />
+
+        </LinearLayout>
+    </ScrollView>
 
     <WebView
         android:id="@+id/mWebViewId"

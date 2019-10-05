@@ -31,3 +31,16 @@ android的网络编程部分（HttpUrlConnection 以及 WebView加载网页 以�
 <br/> A:还是没有理解！刚刚开发完，补充一下笔记！->补充完毕 changed 了第 二 步骤 和第三步骤
 <br/> Q：开发的过程中脑袋里的步骤一定要明确，知道自己下一步该干什么？偶尔卡壳了，停下，再去想一想 这样对么?
 <br/> A:这样可以呀！能成长起来 为什么不呢？
+
+## 数据解析部分
+<br/> 1.到Apache  http://httpd.apache.org/download.cgi 上下载或者搜索 Apache服务器下载  -> [https://blog.csdn.net/qq_41914317/article/details/102180526](https://blog.csdn.net/qq_41914317/article/details/102180526)
+<br/> 2.配置好apache服务器之后需要 添加 xml 格式数据 和 json格式数据，我们在 apache\htdocs 目录下，新建 get_data.xml 以及 get_data.json 文件，并且在 自己搭建的 webView 中去验证
+<br/> 3.我们写一个 专门解析的工具类，提供 pull 解析 和 sax 解析两种方式-->接着传递data数据
+<br/> 4.pull 解析 的步骤大概是 ：<br/> 首先获取到 Pull 解析器的实例<br/>->接着设置输入流,传递的参数就是需要解析的数据;<br/>->接着使用 getEventType()流并且获取到事件类型
+<br/>->根据Document的 节点判断是否结束;<br/>->再去判断开始标签，和结束标签，开始的时候赋值，结束的时候打印；<br/>最后 next 循环遍历该节点直到等于 END_DOCUMENT 则代表结束
+<br/> 5:SAX 解析 相比更加常用，在语义方面有点优势！ </br>step:<br/>->1.首先创建一个自定义Handler继承DefaultHandler 重写4个方法；<br/>2.接着这四个方法 分别是 startDocument() ，endDocument() , startElement() , endElement() , characters() 
+<br/>->即startDocument()代表会在开始解析xml 的时候使用<br/>endDocument()代表完成整个Xml解析的时候使用<br/>startElement()会在开始解析某个节点的时候调用！<br/>endElement()会在完成解析某个节点的时候使用!<br/>characters()会在 获取节点中内容的时候调用,可以被调用多次，一些换行符也有可能被当作内容显示，针对这个在代码中做好控制！
+<br/>具体的步骤也就是：<br/>1.获取到SAX的实例；<br/>2.创建sax解析对象，并且获取到XmlRead对象，接着把我们编写的Handle放到xmlRead里面，在使用xmlReader的parse来进行解析！
+<br/> JSONArray 和 JSONObject 需要注意的是 {} [] 的区别,[] 是一个数组，遇见 {} 就是，数组需要使用JSONArray来获取对象;<br/>->遍历获取 JSONObject对象，获取对应的string;
+<br/> GSON 解析 也是 google 推出的，具体步骤如下：<br/>1.添加 本地依赖库的闭包;<br/>2.如果是对象的话，创建实体类，接着去放到gson的fromJson里面，把json转化为实体对象存储起来!
+<br/> 如果遇见数组类型的话，使用 new TypeToken().getType() 将期望解析的数据放到fromJson中
