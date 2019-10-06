@@ -49,6 +49,6 @@ android的网络编程部分（HttpUrlConnection 以及 WebView加载网页 以�
 <br/>OkHttpClient 内部默认 提供了一个CallBack 可以重写onFailure 和 onResponse 方法！从而执行逻辑
 <br/>httpUrlConnection线程共享数据，如果开启线程那所有的耗时操作都在子线程执行结束了，所以才会造成 服务器的响应为空！   
 <br/>OkHttp 真的比 HttpUrlConnection 优秀很多！
-<br/>从何说起：其一 okHttp 可以对我们请求下的数据进行格式花操作，会默认换行；总比乱糟糟的好吧
+<br/>从何说起：其一 okHttp 可以对我们请求下的数据进行格式化操作，会默认换行；总比乱糟糟的好吧
 <br/>其二 它可以访问http,https的数据默认处理了 URL返回 302（重定向）的问题，相比httpUrlConnection 这点很强大！
 
