@@ -16,6 +16,7 @@ import android.widget.TextView;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
+import org.jetbrains.annotations.NotNull;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -43,6 +44,8 @@ import java.util.List;
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.parsers.SAXParserFactory;
 
+import okhttp3.Call;
+import okhttp3.Callback;
 import okhttp3.FormBody;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
@@ -92,54 +95,30 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         switch (v.getId()) {
             case R.id.sendRequestBtn:
                 //HttpsUrlConnection request step:
-
-                new Thread(new Runnable() {
+                String mAddress = "http://10.0.2.2/get_data.json";
+                HttpUtils.handlerOkHttpResonse(mAddress, new Callback() {
                     @Override
-                    public void run() {
-                        BufferedReader mBufferedReader = null;
-                        HttpURLConnection mHttpURLConnection = null;
-                        try {
-                            URL mUrl = new URL("http://www.baidu.com");
-                            mHttpURLConnection = (HttpURLConnection) mUrl.openConnection();
-
-                            //setting Url
-
-
-                            //user get
-//                            mHttpURLConnection.setRequestMethod("GET");
-                            //----userPost
-                            mHttpURLConnection.setRequestMethod("POST");
-                            DataOutputStream mDataOutPutStream = new DataOutputStream(mHttpURLConnection.getOutputStream());
-                            mDataOutPutStream.writeBytes("username = admin & password = 123456");
-
-                            mHttpURLConnection.setConnectTimeout(60000);
-                            mHttpURLConnection.setReadTimeout(60000);
-
-                            //get InputStream
-                            InputStream mInputStream = mHttpURLConnection.getInputStream();
-                            mBufferedReader = new BufferedReader(new InputStreamReader(mInputStream));
-                            StringBuffer mStringBuffer = new StringBuffer();
-                            String mString;
-                            while ((mString = mBufferedReader.readLine()) != null) {
-                                mStringBuffer.append(mString);
-                            }
-                            showReponse(mStringBuffer.toString());
-                        } catch (Exception e) {
-                            e.printStackTrace();
-                        } finally {
-                            try {
-                                if (mBufferedReader != null) {
-                                    mBufferedReader.close();
-                                }
-                                if (mHttpURLConnection != null) {
-                                    mHttpURLConnection.disconnect();
-                                }
-                            } catch (IOException e) {
-                                e.printStackTrace();
-                            }
-                        }
+                    public void onFailure(@NotNull Call call, @NotNull IOException e) {
+                        Log.e("YJH", "onFailure: " + e
+                                .getMessage());
                     }
-                }).start();
+
+                    @Override
+                    public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
+                        showReponse(response.body().string());
+                    }
+                });
+              /*  HttpUtils.handleHttpUrlConnectionRquest(mAddress, new HttpCallBackListener() {
+                    @Override
+                    public void onFinish(String mReponse) {
+                        showReponse(mReponse);
+                    }
+
+                    @Override
+                    public void onError(String mException) {
+                        Log.e("YJH", "onFailure: " + mException);
+                    }
+                });*/
                 break;
             case R.id.webViewBtn:
 
